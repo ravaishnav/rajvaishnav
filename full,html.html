@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Creation</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, select {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Form Example</h1>
+    <form id="myForm" onsubmit="return validateForm()" style="background-color: lightgreen;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <span class="error" id="nameError"></span>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span class="error" id="emailError"></span>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <span class="error" id="passwordError"></span>
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        <span class="error" id="genderError"></span>
+
+        <label for="country">Country:</label>
+        <select id="country" name="country" required>
+            <option value="">Select a country</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="Canada">Canada</option>
+        </select>
+        <span class="error" id="countryError"></span>
+
+        <label>Interests:</label>
+        <input type="checkbox" name="interests" value="programming"> Programming
+        <input type="checkbox" name="interests" value="gaming"> Gaming
+        <input type="checkbox" name="interests" value="reading"> Reading
+        <span class="error" id="interestsError"></span>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var country = document.getElementById('country').value;
+            var interests = document.querySelectorAll('input[name="interests"]:checked');
+
+            var nameError = document.getElementById('nameError');
+            var emailError = document.getElementById('emailError');
+            var passwordError = document.getElementById('passwordError');
+            var genderError = document.getElementById('genderError');
+            var countryError = document.getElementById('countryError');
+            var interestsError = document.getElementById('interestsError');
+
+            nameError.textContent = "";
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            genderError.textContent = "";
+            countryError.textContent = "";
+            interestsError.textContent = "";
+
+            if (name.trim() === "") {
+                nameError.textContent = "Name is required.";
+                return false;
+            }
+
+            if (email.trim() === "") {
+                emailError.textContent = "Email is required.";
+                return false;
+            }
+
+            // Simple email validation using regex (you can add more complex validation)
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                emailError.textContent = "Invalid email format.";
+                return false;
+            }
+
+            if (password.trim() === "") {
+                passwordError.textContent = "Password is required.";
+                return false;
+            }
+
+            if (!gender) {
+                genderError.textContent = "Gender is required.";
+                return false;
+            }
+
+            if (country === "") {
+                countryError.textContent = "Please select a country.";
+                return false;
+            }
+
+            if (interests.length === 0) {
+                interestsError.textContent = "Please select at least one interest.";
+                return false;
+            }
+
+            if (phonenumber === "") {
+                phonenumberError.textContent = "Please select a phonenumber.";
+                return false;
+            }    
+
+            // Form is valid, you can submit the data
+            return true;
+        }
+    </script>
+</body>
+</html>
