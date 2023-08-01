@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Button</title>
+  <style>
+    .colorful-text {
+      font-size: 24px;
+      transition: color 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interactive Button</h1>
+  <p class="colorful-text" id="textToChange">Content of the HTML is Beyond some one!</p>
+  <button onclick="changeTextColor()">Change Color</button>
+
+  <script>
+    function changeTextColor() {
+      const textElement = document.getElementById('textToChange');
+      const colors = ['red', 'green', 'blue', 'orange', 'purple', 'teal', 'magenta'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      textElement.style.color = randomColor;
+    }
+  </script>
+</body>
+</html>
